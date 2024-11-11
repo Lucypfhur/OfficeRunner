@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 997862585ce11074b83157198955976c
+guid: a4073859d8de4374e881f537ed885187
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - checkPointPrefab: {fileID: 4326150299382580217, guid: ff9e843676b0a5a4ab5f8c4bc1eb9804, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

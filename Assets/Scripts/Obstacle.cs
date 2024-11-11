@@ -31,4 +31,12 @@ public class Obstacle : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+            boxCollider.enabled = false;
+        }
+    }
 }

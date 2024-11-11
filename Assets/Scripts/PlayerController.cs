@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float jumpForce;
+    private float jumpForce = 5f;
 
     private float originalScaleY;
     private bool isCrouching;
@@ -15,11 +13,11 @@ public class PlayerController : MonoBehaviour
     private LifeSystem lifeSystem;
 
 
-    private Rigidbody rb;
+    private Rigidbody rBody;
     private Collider playerCollider;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rBody = GetComponent<Rigidbody>();
         lifeSystem = FindObjectOfType<LifeSystem>();
         playerCollider = GetComponent<Collider>();
         originalScaleY = transform.localScale.y;
@@ -27,18 +25,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            HandleJump();
-        }
-       HandleCrouch();
-
+        HandleJump();
+        HandleCrouch();
     }
     void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            Debug.Log("up arrow pressed");
+            rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false; // Player is now in the air
         }
     }
@@ -48,14 +43,14 @@ public class PlayerController : MonoBehaviour
         {
             if (!isCrouching)
             {
-                
+
                 transform.localScale = new Vector3(transform.localScale.x, crouchScaleY, transform.localScale.z); // Start crouching by reducing the player's scale along Y-axis
                 isCrouching = true;
             }
         }
         else if (isCrouching)
         {
-            
+
             transform.localScale = new Vector3(transform.localScale.x, originalScaleY, transform.localScale.z); // Stop crouching by resetting the player's scale
             isCrouching = false;
         }
@@ -66,11 +61,12 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
-       
-            if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy"))
-            {
-                Debug.Log("Player Collided");
-                lifeSystem.TakeDamage(1);
-            }
+
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player Collided");
+            lifeSystem.TakeDamage(1);
+
         }
+    }
 }

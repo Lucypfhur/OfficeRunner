@@ -1,23 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CheckPoint : MonoBehaviour
 {
-    public TextMeshProUGUI text;
-    public float timetofirstCheckpoint = 60f;
-    public float messageDisplayTime = 3f;
-    public float ObstaclePauseTime = 3f;
-
-    private bool checkpointReached = false;
-    private float gameTime;
+    // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    // Update is called once per frame
     void Update()
     {
         
