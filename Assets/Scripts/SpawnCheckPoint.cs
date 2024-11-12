@@ -9,6 +9,7 @@ public class SpawnCheckPoint : MonoBehaviour
     public Vector2 spawnPosition;
 
     private float timer; 
+    // this script is only valid till checkpoint 
     // Start is called before the first frame update
     void Start()
     {
