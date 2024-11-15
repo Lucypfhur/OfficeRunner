@@ -36,7 +36,11 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+            MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
             boxCollider.enabled = false;
+            meshRenderer.enabled = false;
         }
     }
+  
+   
 }
