@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Debug.LogError("GameManager reference not set!");
+            Debug.Log("GameManager reference set!");
         }
     }
 }

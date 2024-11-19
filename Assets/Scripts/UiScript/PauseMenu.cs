@@ -7,14 +7,17 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isPaused)
+            Debug.Log("nsdfjdkfbskbf");
+            if (isPaused)
             {
                 Resume();
             }
             else
                 Pause();
+            
         }
     }
     public void Resume()
@@ -27,8 +30,9 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         pauseMenu.SetActive(true);
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
         isPaused = true;
+        Debug.Log("shbdasbdbasdjb");
     }
 
     public void Quit()
