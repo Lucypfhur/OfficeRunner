@@ -13,13 +13,10 @@ public class PlayerController : MonoBehaviour
     private float leftLaneZ = -3f;
     [SerializeField]
     private float rightLaneZ = 0f;
-    [SerializeField]
-    private Animator anim;
 
-   
     private float originalScaleY;
     private bool isCrouching;
-    private float crouchScaleY = 0.5f;
+    private float crouchScaleY = 0.3f;
     private bool isGrounded = true;
     private bool isOnRightLane = true;
     private bool islaneSwitchOn;
@@ -38,7 +35,7 @@ public class PlayerController : MonoBehaviour
         playerCollider = GetComponent<Collider>();
         originalScaleY = transform.localScale.y;
         targetPosition = transform.position;
-        anim= GetComponent<Animator>();
+        //anim= GetComponent<Animator>();
 
         if (enemy == null)
         {
@@ -62,14 +59,14 @@ public class PlayerController : MonoBehaviour
             rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false; // Player is now in the air
 
-            anim.SetBool("Jump", true);
+            /*anim.SetBool("Jump", true);
             anim.SetBool("Crouch", false);
             anim.SetBool("Idle", false);
         }
         else if (isGrounded)
         {
             anim.SetBool("Jump", false);
-            anim.SetBool("Idle", true);
+            anim.SetBool("Idle", true);*/
         }
     }
     void HandleCrouch()
@@ -80,9 +77,9 @@ public class PlayerController : MonoBehaviour
             {
 
                 transform.localScale = new Vector3(transform.localScale.x, crouchScaleY, transform.localScale.z); // Start crouching by reducing the player's scale along Y-axis
-                anim.SetBool("Crouch", true);
+                /*anim.SetBool("Crouch", true);
                 anim.SetBool("Jump", false);
-                anim.SetBool("Idle", false);
+                anim.SetBool("Idle", false);*/
                 isCrouching = true;
             }
         }
@@ -91,14 +88,14 @@ public class PlayerController : MonoBehaviour
 
             transform.localScale = new Vector3(transform.localScale.x, originalScaleY, transform.localScale.z); // Stop crouching by resetting the player's scale
             isCrouching = false;
-            anim.SetBool("Crouch", false);
-            anim.SetBool("Idle", true);
+            /*anim.SetBool("Crouch", false);
+            anim.SetBool("Idle", true);*/
         }
     }
 
     void HandleSwitching()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow) && islaneSwitchOn && isOnRightLane)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && islaneSwitchOn && isOnRightLane)
         {
             Debug.Log("Left Arrow pressed");
             targetPosition = new Vector3(transform.position.x, transform.position.y, leftLaneZ);
@@ -106,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && islaneSwitchOn && !isOnRightLane)
         {
-            Debug.Log("Right Arrow Pressed"); 
+            Debug.Log("Right Arrow Pressed");
             targetPosition = new Vector3(transform.position.x, transform.position.y, rightLaneZ);
             isOnRightLane = true;
         }
@@ -129,15 +126,15 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
 
-        if (collision.gameObject.CompareTag("Obstacle") )
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-           
+
             lifeSystem.TakeDamage(1);
             enemy.MoveCloser();
 
         }
     }
-    
+
     public void EnableLaneSwitching()
     {
         islaneSwitchOn = true; // Enable lane switching ability

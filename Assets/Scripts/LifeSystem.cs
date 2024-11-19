@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LifeSystem : MonoBehaviour
 {
     private int currenthealth;
-    private int maxhealth = 5;
+    private int maxhealth = 2;
 
     [Header("Ui Settings")]
     public Image[] Hearts;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Enemy : MonoBehaviour
     private float closeDistance = 3f;
     private float resetDistance= 3f;
     private float timeLimit = 5f;
-    private float followSpeed = 10f;
+    private float followSpeed = 3f;
 
     private Vector3 originalPosition;// original Position of the enmey
     private bool isClose;
@@ -17,7 +18,10 @@ public class Enemy : MonoBehaviour
     private int collisionCount= 0;
     private bool canCatch;
 
-  
+    [SerializeField]
+    private GameManager gameManager;
+
+
     void Start()
     {
         originalPosition = transform.position;
@@ -75,6 +79,14 @@ public class Enemy : MonoBehaviour
     }
     private void CatchPlayer()
     {
-        Debug.Log("Player Caught Game Over"); 
+        Debug.Log("Player Caught Game Over");
+        if (gameManager != null)
+        {
+            gameManager.TriggerGameOver();
+        }
+        else
+        {
+            Debug.LogError("GameManager reference not set!");
+        }
     }
 }

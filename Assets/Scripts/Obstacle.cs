@@ -7,9 +7,6 @@ public class Obstacle : MonoBehaviour
     private float obstacleSpeed;
     private float objectThreshold = 15f;
 
-
-
-
     // Start is called before the first frame update
    
     public void SetSpeed(float speed)
