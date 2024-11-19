@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a672368a07dfe428dc3b99f1ba0d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  obstacleSpeed: 3
   objectThreshold: 25
 --- !u!54 &1607566851827309319
 Rigidbody:
